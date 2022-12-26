@@ -20,15 +20,6 @@ public class Register extends javax.swing.JFrame {
     
     public Register() {
         initComponents();
-        try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/klip_db?zeroDateTimeBehavior=convertToNull", "root", "");
-            st = con.createStatement();
-            System.out.println("Connection Berhasil!");
-        }catch (Exception e){
-            System.out.println("Connection Gagal!");
-            System.out.println(e);
-        }
-        
     }
 
     /**
