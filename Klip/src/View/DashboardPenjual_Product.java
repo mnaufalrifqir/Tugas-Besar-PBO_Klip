@@ -12,6 +12,7 @@ import Model.User;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +34,8 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
             Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
             tabModel.addRow(data);
         }
+        this.btn_edit.setEnabled(false);
+        this.btn_hapus.setEnabled(false);
     }
     
     public DashboardPenjual_Product() {
@@ -66,6 +69,7 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
         btn_edit = new javax.swing.JButton();
         btn_tambah = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
+        btn_refresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -152,7 +156,7 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
 
         main_panel.add(navbar_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 620));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setBackground(new java.awt.Color(235, 235, 235));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabel_product.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -175,6 +179,11 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
         tabel_product.setGridColor(new java.awt.Color(255, 255, 255));
         tabel_product.setSelectionBackground(new java.awt.Color(204, 204, 204));
         tabel_product.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tabel_product.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_productMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel_product);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 700, 410));
@@ -216,6 +225,17 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 90, -1));
+
+        btn_refresh.setBackground(new java.awt.Color(255, 255, 255));
+        btn_refresh.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btn_refresh.setText("Refresh");
+        btn_refresh.setFocusPainted(false);
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 90, -1));
 
         main_panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 770, 620));
 
@@ -275,35 +295,40 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
     private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
         FormTambahProduct form = new FormTambahProduct(this.p);
         form.setVisible(true);
-        
-        //Refresh Table
-        ArrayList<Product> arr = this.p.getAllProduct();
-        initComponents();
-        DefaultTableModel tabModel = (DefaultTableModel)this.tabel_product.getModel();
-        tabModel.getDataVector().removeAllElements();
-        System.out.println(tabModel);
-        for (Product product: arr){
-            Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
-            tabModel.addRow(data);
-        }
     }//GEN-LAST:event_btn_tambahActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         int selectedRow = this.tabel_product.getSelectedRow();
         Object id = this.tabel_product.getValueAt(selectedRow, 0);
         this.p.deleteProduct((int)id);
-        
+
         //Refresh Table
         ArrayList<Product> arr = this.p.getAllProduct();
-        initComponents();
         DefaultTableModel tabModel = (DefaultTableModel)this.tabel_product.getModel();
         tabModel.getDataVector().removeAllElements();
         System.out.println(tabModel);
         for (Product product: arr){
             Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
             tabModel.addRow(data);
-        }
+         }
     }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void tabel_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_productMouseClicked
+        this.btn_edit.setEnabled(true);
+        this.btn_hapus.setEnabled(true);
+    }//GEN-LAST:event_tabel_productMouseClicked
+
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        //Refresh Table
+        ArrayList<Product> arr = this.p.getAllProduct();
+        DefaultTableModel tabModel = (DefaultTableModel)this.tabel_product.getModel();
+        tabModel.getDataVector().removeAllElements();
+        System.out.println(tabModel);
+        for (Product product: arr){
+            Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
+            tabModel.addRow(data);
+         }
+    }//GEN-LAST:event_btn_refreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +370,7 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_hapus;
+    private javax.swing.JButton btn_refresh;
     private javax.swing.JButton btn_tambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

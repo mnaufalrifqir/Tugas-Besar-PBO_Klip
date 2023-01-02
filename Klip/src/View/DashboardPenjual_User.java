@@ -6,6 +6,7 @@
 package View;
 
 import Model.Penjual;
+import Model.Product;
 import Model.User;
 
 import java.awt.Color;
@@ -30,6 +31,7 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
             Object[] data = {user.getIdUser(), user.getNamaUser(), user.getRoles()};
             tabModel.addRow(data);
         }
+        this.btn_edit.setEnabled(false);
     }
     
     public DashboardPenjual_User() {
@@ -60,6 +62,7 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_user = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        btn_refresh = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,7 +150,7 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
 
         main_panel.add(navbar_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 620));
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setBackground(new java.awt.Color(235, 235, 235));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabel_user.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -170,7 +173,12 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
         tabel_user.setToolTipText("");
         tabel_user.setGridColor(new java.awt.Color(255, 255, 255));
         tabel_user.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        tabel_user.setSelectionForeground(new java.awt.Color(245, 245, 245));
+        tabel_user.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tabel_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_userMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel_user);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 700, 410));
@@ -179,6 +187,17 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(248, 11, 11));
         jLabel4.setText("Dashboard Penjual / User");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        btn_refresh.setBackground(new java.awt.Color(255, 255, 255));
+        btn_refresh.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btn_refresh.setText("Refresh");
+        btn_refresh.setFocusPainted(false);
+        btn_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 90, -1));
 
         btn_edit.setBackground(new java.awt.Color(255, 255, 255));
         btn_edit.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
@@ -236,15 +255,31 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
         navbar_transaction.setBackground(navbar_panel.getBackground());
     }//GEN-LAST:event_navbar_transactionMouseExited
 
-    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_editActionPerformed
+    private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
+        //Refresh Table
+        ArrayList<User> arr = this.p.getAllUser();
+        DefaultTableModel tabModel = (DefaultTableModel)this.tabel_user.getModel();
+        tabModel.getDataVector().removeAllElements();
+        System.out.println(tabModel);
+        for (User user: arr){
+            Object[] data = {user.getIdUser(), user.getNamaUser(), user.getRoles()};
+            tabModel.addRow(data);
+         }
+    }//GEN-LAST:event_btn_refreshActionPerformed
 
     private void navbar_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navbar_productMouseClicked
        this.dispose();
        DashboardPenjual_Product dashPenjualProduct = new DashboardPenjual_Product((User)this.p);
        dashPenjualProduct.setVisible(true);
     }//GEN-LAST:event_navbar_productMouseClicked
+
+    private void tabel_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_userMouseClicked
+        this.btn_edit.setEnabled(true);
+    }//GEN-LAST:event_tabel_userMouseClicked
+
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +322,7 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
     private Penjual p;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_edit;
+    private javax.swing.JButton btn_refresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

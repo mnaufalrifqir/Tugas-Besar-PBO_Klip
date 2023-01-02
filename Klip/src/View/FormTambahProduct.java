@@ -11,14 +11,15 @@ import javax.swing.JOptionPane;
 import Model.Pembeli;
 import Model.Penjual;
 import Model.Product;
+import java.util.ArrayList;
 import java.util.logging.*;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author haikal
  */
 public class FormTambahProduct extends javax.swing.JFrame {
-    public Connection con;
-    public Statement st;
     
     public FormTambahProduct(Penjual p) {
         this.p = p;
@@ -214,6 +215,7 @@ public class FormTambahProduct extends javax.swing.JFrame {
         }else{
             this.p.addProduct(this.textfield_namaProduk.getText(), this.textarea_deskripsi.getText(), Integer.valueOf(this.textfield_harga.getText()));
             this.dispose();
+            JOptionPane.showMessageDialog(null, "Mohon refresh setelah menambah produk");
         }
     }//GEN-LAST:event_btn_tambahActionPerformed
 
