@@ -15,8 +15,6 @@ import java.util.logging.*;
  * @author haikal
  */
 public class Register extends javax.swing.JFrame {
-    public Connection con;
-    public Statement st;
     
     public Register() {
         initComponents();
@@ -48,7 +46,7 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel1.setText("Selamat Datang di Klip!");
 
         btn_register.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -206,7 +204,7 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(btn_register)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

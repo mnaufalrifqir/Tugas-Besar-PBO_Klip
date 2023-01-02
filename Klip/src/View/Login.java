@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel1.setText("Selamat Datang di Klip!");
 
         btn_login.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(btn_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,22 +190,23 @@ public class Login extends javax.swing.JFrame {
         }else if (this.textfield_password.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Password tidak boleh kosong!");
             this.textfield_password.requestFocus();
-        }
-        User u = new User(this.textfield_email.getText(), this.textfield_password.getText());
-        boolean isLoggedIn = u.login();
-        if(isLoggedIn){
-            User newU = u.getOneUser();
-            if (newU.getRoles().equals("pembeli")){
-                this.dispose();
-                DashboardPembeli dashPembeli = new DashboardPembeli();
-                dashPembeli.setVisible(true);
-            }else if (newU.getRoles().equals("penjual")){
-                this.dispose();
-                DashboardPenjual dashPenjual = new DashboardPenjual();
-                dashPenjual.setVisible(true);
-            }
         }else{
-            JOptionPane.showMessageDialog(null, "Email atau password salah!");
+            User u = new User(this.textfield_email.getText(), this.textfield_password.getText());
+            boolean isLoggedIn = u.login();
+            if(isLoggedIn){
+                User newU = u.getOneUser();
+                if (newU.getRoles().equals("pembeli")){
+                    this.dispose();
+                    DashboardPembeli dashPembeli = new DashboardPembeli();
+                    dashPembeli.setVisible(true);
+                }else if (newU.getRoles().equals("penjual")){
+                    this.dispose();
+                    DashboardPenjual_Product dashPenjual = new DashboardPenjual_Product(newU);
+                    dashPenjual.setVisible(true);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Email atau password salah!");
+            }
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 

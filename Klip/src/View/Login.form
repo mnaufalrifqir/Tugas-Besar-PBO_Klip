@@ -60,7 +60,7 @@
               <Component id="btn_login" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +69,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tw Cen MT" size="36" style="1"/>
+          <Font name="Trebuchet MS" size="36" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Selamat Datang di Klip!"/>
       </Properties>
