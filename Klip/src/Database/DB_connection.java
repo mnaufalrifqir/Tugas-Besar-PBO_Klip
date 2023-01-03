@@ -14,7 +14,7 @@ public class DB_connection {
     
     public DB_connection(){
         try{
-            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/klip_db?zeroDateTimeBehavior=convertToNull", "root", "");
+            this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/klip_pbo?zeroDateTimeBehavior=convertToNull", "root", "");
             System.out.println("Connection Berhasil!");
         }catch (SQLException e){
             System.out.println("Connection Gagal!");

@@ -84,13 +84,13 @@ public class User {
             Statement stt = con.createStatement();
             ResultSet res;
         
-            res = stt.executeQuery("SELECT idUser, namaUser, email, password, roles FROM user");
+            res = stt.executeQuery("SELECT id, name, email, roles, password FROM users");
             while(res.next()){
-                int idUser = res.getInt("idUser");
-                String namaUser = res.getString("namaUser");
+                int idUser = res.getInt("id");
+                String namaUser = res.getString("name");
                 String email = res.getString("email");
-                String password = res.getString("password");
                 String roles = res.getString("roles");
+                String password = res.getString("password");
                 if (this.email.equals(email) && this.password.equals(password)){
                     User u = new User(idUser, namaUser, email, password, roles);
                     return u;
@@ -110,7 +110,7 @@ public class User {
             ResultSet res;
             
             // Cek apakah email sudah ada di database
-            res = stt.executeQuery("SELECT email FROM user");
+            res = stt.executeQuery("SELECT email FROM users");
             while(res.next()){
                 String email = res.getString("email");
                 if (email.equals(this.email)){
@@ -118,7 +118,7 @@ public class User {
                 }
             }
             if (true){
-                stt.executeUpdate("INSERT INTO user (namaUser, email, password)" + 
+                stt.executeUpdate("INSERT INTO users (name, email, password)" + 
                     "VALUES ('"+namaUser+"','"+email+"', '"+password+"');");
             }
         }catch (SQLException e){
@@ -137,7 +137,7 @@ public class User {
             String email, password;
             
             // Cek apakah user sudah terdaftar di database
-            res = stt.executeQuery("SELECT email FROM user");
+            res = stt.executeQuery("SELECT email FROM users");
             while(res.next()){
                 email = res.getString("email");
                 if (this.email.equals(email)){
@@ -146,7 +146,7 @@ public class User {
             }
             // Jika teregister, lanjut ke proses login
             if (isRegistered){
-                res = stt.executeQuery("SELECT email, password FROM user");
+                res = stt.executeQuery("SELECT email, password FROM users");
                 while(res.next()){
                     email = res.getString("email");
                     password = res.getString("password");

@@ -196,11 +196,11 @@ public class Login extends javax.swing.JFrame {
             boolean isLoggedIn = u.login();
             if(isLoggedIn){
                 User newU = u.getOneUser();
-                if (newU.getRoles().equals("pembeli")){
+                if (newU.getRoles().equals("USER")){
                     this.dispose();
-                    DashboardPembeli dashPembeli = new DashboardPembeli();
+                    DashboardPembeli_Home dashPembeli = new DashboardPembeli_Home(newU);
                     dashPembeli.setVisible(true);
-                }else if (newU.getRoles().equals("penjual")){
+                }else if (newU.getRoles().equals("ADMIN")){
                     this.dispose();
                     DashboardPenjual_Product dashPenjual = new DashboardPenjual_Product(newU);
                     dashPenjual.setVisible(true);

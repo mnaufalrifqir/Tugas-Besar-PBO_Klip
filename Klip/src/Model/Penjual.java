@@ -24,13 +24,13 @@ public class Penjual extends User{
             ArrayList<User> arr = new ArrayList();
             ResultSet res;
         
-            res = stt.executeQuery("SELECT idUser, namaUser, email, password, roles FROM user");
+            res = stt.executeQuery("SELECT id, name, email, roles, password FROM users");
             while(res.next()){
-                int idUser = res.getInt("idUser");
-                String namaUser = res.getString("namaUser");
+                int idUser = res.getInt("id");
+                String namaUser = res.getString("name");
                 String email = res.getString("email");
-                String password = res.getString("password");
                 String roles = res.getString("roles");
+                String password = res.getString("password");
                 User u = new User(idUser, namaUser, email, password, roles);
                 arr.add(u);
 
@@ -50,12 +50,12 @@ public class Penjual extends User{
             Statement stt = con.createStatement();
             ResultSet res;
             
-            res = stt.executeQuery("SELECT idProduct, namaProduct, deskripsi, harga FROM product;");
+            res = stt.executeQuery("SELECT id, name, price, description FROM products;");
             while(res.next()){
-                int idProduct = res.getInt("idProduct");
-                String nama = res.getString("namaProduct");
-                String desc = res.getString("deskripsi");
-                double price = res.getDouble("harga");
+                int idProduct = res.getInt("id");
+                String nama = res.getString("name");
+                double price = res.getDouble("price");
+                String desc = res.getString("description");
                 Product p = new Product(idProduct, nama, desc, price);
                 arr.add(p);
             }
@@ -72,8 +72,8 @@ public class Penjual extends User{
             Connection con = c.getConnection();
             Statement stt = con.createStatement();
         
-            stt.executeUpdate("INSERT INTO product (namaProduct, deskripsi, harga)" + 
-                    "VALUES ('"+namaProduct+"','"+deskripsi+"', '"+harga+"');");
+            stt.executeUpdate("INSERT INTO products (name, price, description)" + 
+                    "VALUES ('"+namaProduct+"','"+harga+"', '"+deskripsi+"');");
         }catch(SQLException e){
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -85,7 +85,7 @@ public class Penjual extends User{
             Connection con = c.getConnection();
             Statement stt = con.createStatement();
         
-            stt.executeUpdate("DELETE FROM product WHERE idProduct = '"+id+"';");
+            stt.executeUpdate("DELETE FROM products WHERE id = '"+id+"';");
         }catch(SQLException e){
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         }
