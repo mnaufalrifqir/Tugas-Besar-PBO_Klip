@@ -215,7 +215,7 @@ public class FormTambahProduct extends javax.swing.JFrame {
         }else{
             this.p.addProduct(this.textfield_namaProduk.getText(), this.textarea_deskripsi.getText(), Integer.valueOf(this.textfield_harga.getText()));
             this.dispose();
-            JOptionPane.showMessageDialog(null, "Mohon refresh setelah menambah produk");
+            JOptionPane.showMessageDialog(null, "Mohon refresh setelah menambah produk.");
         }
     }//GEN-LAST:event_btn_tambahActionPerformed
 

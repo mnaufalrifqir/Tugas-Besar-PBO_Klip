@@ -84,6 +84,9 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
 
         navbar_logout.setBackground(new java.awt.Color(255, 255, 255));
         navbar_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navbar_logoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 navbar_logoutMouseEntered(evt);
             }
@@ -311,6 +314,8 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
             Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
             tabModel.addRow(data);
          }
+        this.btn_edit.setEnabled(false);
+        this.btn_hapus.setEnabled(false);
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void tabel_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_productMouseClicked
@@ -328,7 +333,15 @@ public class DashboardPenjual_Product extends javax.swing.JFrame {
             Object[] data = {product.getIdProduct(), product.getNamaProduct(), product.getDeskripsi(), product.getHarga()};
             tabModel.addRow(data);
          }
+        this.btn_edit.setEnabled(false);
+        this.btn_hapus.setEnabled(false);
     }//GEN-LAST:event_btn_refreshActionPerformed
+
+    private void navbar_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navbar_logoutMouseClicked
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_navbar_logoutMouseClicked
 
     /**
      * @param args the command line arguments

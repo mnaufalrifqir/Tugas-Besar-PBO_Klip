@@ -225,7 +225,7 @@ public class Register extends javax.swing.JFrame {
         User u = new User(this.textfield_nama.getText(), this.textfield_email.getText(), this.textfield_password.getText());
         Boolean isRegistered = u.register();
         if (!isRegistered){
-            JOptionPane.showMessageDialog(null, "Email sudah dipakai! Mohon gunakan email lain.");
+            JOptionPane.showMessageDialog(null, "Email sudah dipakai, Mohon gunakan email lain.");
         }else{
             JOptionPane.showMessageDialog(null, "Register berhasil!");
         }

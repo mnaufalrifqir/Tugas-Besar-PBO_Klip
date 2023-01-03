@@ -89,6 +89,9 @@ public class DashboardPembeli_Home extends javax.swing.JFrame {
 
         navbar_logout.setBackground(new java.awt.Color(255, 255, 255));
         navbar_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navbar_logoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 navbar_logoutMouseEntered(evt);
             }
@@ -282,6 +285,12 @@ public class DashboardPembeli_Home extends javax.swing.JFrame {
         DashboardPembeli_Cart dashPembeliCart = new DashboardPembeli_Cart(this.p);
         dashPembeliCart.setVisible(true);
     }//GEN-LAST:event_navbar_cartMouseClicked
+
+    private void navbar_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navbar_logoutMouseClicked
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_navbar_logoutMouseClicked
 
     /**
      * @param args the command line arguments

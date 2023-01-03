@@ -78,6 +78,9 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
 
         navbar_logout.setBackground(new java.awt.Color(255, 255, 255));
         navbar_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navbar_logoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 navbar_logoutMouseEntered(evt);
             }
@@ -265,6 +268,7 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
             Object[] data = {user.getIdUser(), user.getNamaUser(), user.getRoles()};
             tabModel.addRow(data);
          }
+        this.btn_edit.setEnabled(false);
     }//GEN-LAST:event_btn_refreshActionPerformed
 
     private void navbar_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navbar_productMouseClicked
@@ -280,6 +284,12 @@ public class DashboardPenjual_User extends javax.swing.JFrame {
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_editActionPerformed
+
+    private void navbar_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navbar_logoutMouseClicked
+        this.dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_navbar_logoutMouseClicked
 
     /**
      * @param args the command line arguments
